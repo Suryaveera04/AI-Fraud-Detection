@@ -5,7 +5,7 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // ================= MIDDLEWARE =================
 const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:3000";
@@ -45,7 +45,7 @@ function detectLanguage(text) {
 // ================= ML INTEGRATION =================
 function runPythonScript(command, text = "") {
   return new Promise((resolve, reject) => {
-    const pythonPath = "python";
+    const pythonPath = "python3"; // Use python3 for Render
     const scriptPath = path.join(__dirname, "ml_fraud_detector.py");
     
     const args = [scriptPath, command];

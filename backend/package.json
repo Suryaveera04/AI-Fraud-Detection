@@ -1,10 +1,10 @@
 {
   "name": "scamshield-backend",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "AI-powered real-time fraud detection backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "dev": "nodemon server.js",
     "postinstall": "pip install --upgrade pip && pip install --upgrade setuptools wheel && pip install -r requirements.txt"
   },
