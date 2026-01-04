@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "dev": "nodemon server.js",
-    "postinstall": "pip install --upgrade pip && pip install --upgrade setuptools wheel && pip install -r requirements.txt"
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
