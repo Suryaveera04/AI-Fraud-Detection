@@ -8,8 +8,16 @@ const app = express();
 const PORT = 5000;
 
 // ================= MIDDLEWARE =================
-app.use(cors());
+const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:3000";
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true
+}));
 app.use(bodyParser.json());
+// ================= HEALTH CHECK ENDPOINT =================
+app.get('/api/', (req, res) => {
+  res.json({ status: 'Backend API is running', timestamp: new Date().toISOString() });
+});
 
 // ================= SUPPORTED LANGUAGES =================
 const SUPPORTED_LANGUAGES = {

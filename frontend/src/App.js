@@ -25,7 +25,7 @@ const App = () => {
 
   // Load supported languages on component mount
   useEffect(() => {
-    fetch('http://localhost:5000/api/languages')
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/languages`)
       .then(response => response.json())
       .then(data => setSupportedLanguages(data.supported))
       .catch(err => console.log('Failed to load languages:', err));
@@ -98,7 +98,7 @@ const App = () => {
   const analyzeAudio = async (text) => {
     setStatus('Analyzing');
     try {
-      const response = await fetch('http://localhost:5000/api/analyze-text', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/analyze-text`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ transcript: text })
@@ -168,7 +168,7 @@ const App = () => {
     setShowFraudAlert(true);
     
     // Send emergency alert to backend
-    fetch('http://localhost:5000/api/emergency-alert', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/emergency-alert`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
