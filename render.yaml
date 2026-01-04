@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: scamshield-backend
+    env: node
+    buildCommand: npm install && pip install -r requirements.txt
+    startCommand: npm start
+    rootDir: ./backend
+    
+  - type: static
+    name: scamshield-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
+    rootDir: ./frontend
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        value: https://scamshield-backend.onrender.com
