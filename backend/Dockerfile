@@ -1,10 +1,11 @@
 FROM node:18-bullseye
 
-# Install Python 3.10 and pip
+# Install Python 3.10 and ensure pip is available
 RUN apt-get update && \
-    apt-get install -y python3.10 python3-pip && \
+    apt-get install -y python3.10 curl && \
     ln -sf python3.10 /usr/bin/python3 && \
-    ln -sf python3.10 /usr/bin/python
+    ln -sf python3.10 /usr/bin/python && \
+    curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 
 WORKDIR /usr/src/app
 
@@ -14,7 +15,7 @@ RUN npm install
 
 # Copy Python requirements and install
 COPY requirements.txt ./
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
+RUN python3.10 -m pip install --upgrade pip && python3.10 -m pip install -r requirements.txt
 
 # Copy the rest of the backend code
 COPY . .
