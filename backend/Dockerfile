@@ -3,7 +3,7 @@ FROM node:18-bullseye
 
 # 2. Install Python 3.10 and pip
 RUN apt-get update && \
-    apt-get install -y python3.10 python3-pip python3.10-venv && \
+    apt-get install -y python3.10 python3-pip && \
     ln -sf python3.10 /usr/bin/python3 && \
     ln -sf python3.10 /usr/bin/python
 
